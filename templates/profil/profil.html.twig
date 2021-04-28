@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<div class="container text-center">
+    <h2 class="mt-5 pt-4">Mon Espace</h2>
+    <div class="divider"></div>
+</div>
+<div class="row mt-5">
+    <div class="col-3 ml-4">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+            href="#list-profile" role="tab" aria-controls="profile">Mes Annonces</a>
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
+                href="#list-home" role="tab" aria-controls="home">Mon Profil</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+                href="#list-settings" role="tab" aria-controls="settings">Mon Abonnement</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+                href="#list-messages" role="tab" aria-controls="messages">Messages</a>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                <div class="col-12 bg-title mb-5">
+                    <h4 class="text-center text-white">Modifier mon profil :</h4>
+                </div>
+                <!-- {% if is_granted('ROLE_ADMIN') %} -->
+                <div class="container bg shadow py-2 mb-5">
+                    <!-- Affichage des flashMessages s'ils en existent. On doit utiliser une boucle -->
+                    {% for type, messages in app.flashes(['success', 'danger']) %}
+                    {% for message in messages %}
+                    <!-- le type permet de mettre une couleur qui est en lien avec le message symfony. Tout cela est généré dynamiquement par symfony -->
+                    <div class="alert alert-{{ type }}">{{ message }}</div>
+                    {% endfor %}
+                    {% endfor %}
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.name, 'Nom') }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Votre nom'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.firstname, 'Prénom') }}
+                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Votre prénom'}
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.login) }}
+                        {{ form_widget(form.login, {'attr': {'class': 'form-control', 'placeholder': 'Votre login'} })
+                        }}
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Mot de passe</label>
+                        <input type="password" name="newPassword" id="newPassword" placeholder="Votre nouveau password"
+                            class="form-control">
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.number, "Numéro d'adresse") }}
+                        {{ form_widget(form.number, {'attr': {'class': 'form-control', 'placeholder': "Votre numéro
+                        d'adresse"} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.numberComplement, "Numéro de complément d'adresse (facultatif)") }}
+                        {{ form_widget(form.numberComplement, {'attr': {'class': 'form-control', 'placeholder': "Votre
+                        numéro de complément d'adresse"} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.street, 'Rue') }}
+                        {{ form_widget(form.street, {'attr': {'class': 'form-control', 'placeholder': 'Votre nom de
+                        rue'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.city, 'Ville') }}
+                        {{ form_widget(form.city, {'attr': {'class': 'form-control', 'placeholder': 'Votre ville'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.country, 'Pays') }}
+                        {{ form_widget(form.country, {'attr': {'class': 'form-control', 'placeholder': 'Votre Pays'} })
+                        }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.postalCode, 'Code postal') }}
+                        {{ form_widget(form.postalCode, {'attr': {'class': 'form-control', 'placeholder': 'Votre code
+                        postal'} }) }}
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn_form mt-3">Modifier</button>
+                    </div>
+                    {{ form_row(form._token) }}
+                    {{ form_end(form, { render_rest: false }) }}
+                </div>
+                <!-- {% endif %} -->
+            </div>
+            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                <div class="row ml-1">
+                    <div class="col-8 bg">
+                        <h5 class="text-white text-center">Mes annonces :</h5>
+                    </div>
+                    <a href="{{ path('new_annonce') }}" class="btn btn_hov ml-auto"><i class="fa fa-plus"
+                            aria-hidden="true"></i> Ajouter une annonce</a>
+                </div>
+                {% for annonce in annonces %}
+                <div class="row my-5">
+                    <div class="col-12 col-lg-7">
+                        <h4><span style="color: black;">{{ annonce.title }}</span></h4>
+                        <p class="font-italic">Publié le {{ annonce.createdAt|date("d/m/y") }}</p>
+                        <div class="mb-3">{{ annonce.description|u.truncate(110)|raw }} ... <a
+                                href="{{ path('annonce-detail', {'slug': annonce.id}) }}" class="suite">voir la
+                                suite</a>
+                        </div>
+                        <a href="{{ path('annonce-update', {id: annonce.id}) }}" class="btn btn_hov">Modifier
+                            l'annonce</a>
+                        <a href="{{ path('annonce-delete', {id: annonce.id}) }}" class="btn btn_del">Supprimer
+                            l'annonce</a>
+                    </div>
+                    <div class="ml-auto col-12 col-lg-4">
+                        <img class="img-fluid" src="{{ asset('upload/annonce/' ~ annonce.image) }}" alt="">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                toto-message
+            </div>
+            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                {{dump(abonnement.name)}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block body %}
+<section id="main">
+    <div class="container-fluid contenant">
+        <img src="{{ asset('upload/home/' ~ mainImage.image)}}" alt="mainImage">
+        <div class="texte_centrer">
+            <div id="small_text">{{ mainImage.smallTitle }}</div>
+            <div id="text_main">{{ mainImage.title|raw }}</div>
+            <div class="btn btn-inscription">
+                <a href="{{ path('inscription')}}">S'inscrire</a>
+            </div>
+            <div class="mt-5">
+                <a class="chevron" href="#about"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="about">
+    <div class="container">
+        <h3>Qui sommes-nous ?</h3>
+        <div class="divider"></div>
+        {% for about in abouts %}
+        <div class="text-center">
+            <p>{{ about.text|raw }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section id="service">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12 col-lg-7">
+                <h4><span style="color: black;">{{ homeA.title|raw }}</span></h4>
+                <p>{{ homeA.text|raw }}</p>
+            </div>
+            <div class="ml-auto col-12 col-lg-4">
+                <img class="img-fluid" src="{{ asset('upload/home/' ~ homeA.image)}}" alt="">
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 col-lg-7">
+                <h4><span style="color: black;">{{ homeB.title|raw }}</span></h4>
+                <p>{{ homeB.text|raw }}</p>
+            </div>
+            <div class="ml-auto col-12 col-lg-4">
+                <img class="img-fluid" src="{{ asset('upload/home/' ~ homeB.image)}}" alt="">
+            </div>
+        </div>
+        <div class="mt-5 mb-2">
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    <h4><span style="color: black;">{{ homeC.title|raw }}</span></h4>
+                    <p>{{ homeC.text|raw }}</p>
+                </div>
+                <div class="ml-auto col-12 col-lg-4">
+                    <img class="img-fluid" src="{{ asset('upload/home/' ~ homeC.image)}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="join">
+    <div class="container pt-2">
+        <h3 class="text-white">Rejoignez-Nous</h3>
+        <div class="divider"></div>
+        <div class="row mt-5">
+            <div class="col-12 col-lg-6 text-center br mb-5">
+                <h5>Particulier</h5>
+                <p class="text-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt ex vitae dolore
+                    natus qui! Nobis unde aut, quaerat ex ducimus obcaecati et mollitia culpa consequuntur quo fuga
+                    omnis consectetur repudiandae!</p>
+                <a href="" class="btn btn-join">Rejoindre</a>
+            </div>
+            <div id="divider-none"></div>
+            <div class="col-12 col-lg-6 text-center mb-5 professionel">
+                <h5>Professionel</h5>
+                <p class="text-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt ex vitae dolore
+                    natus qui! Nobis unde aut, quaerat ex ducimus obcaecati et mollitia culpa consequuntur quo fuga
+                    omnis consectetur repudiandae!</p>
+                <a href="" class="btn btn-join">Rejoindre</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

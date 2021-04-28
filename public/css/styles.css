@@ -1,0 +1,280 @@
+body, html {
+    height: 100%;
+    display:flex;
+    flex-flow:column;
+    scroll-behavior: smooth;
+}
+header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    padding: 0;
+    height: 80px;
+    z-index: 9999;
+}
+.bg-nav{
+    background: rgba(15, 15, 15, 0.651);
+}
+.navbar a{
+    color: rgb(221, 114, 114);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+}
+button.navbar-toggler{
+    border: 1px solid white;
+}
+span.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><path stroke='rgba(221, 114, 114, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");;
+}
+footer.reseau {
+    display: flex;
+    justify-content: center;
+}
+footer a {
+    color: white;
+    font-size: 18px;
+}
+footer a:hover{
+    color: #dd7272;
+}
+.container-fluid{
+    padding: 0;
+}
+img{
+    height: 100vh;
+    width: 100%;
+}
+.contenant {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.texte_centrer {
+    position: absolute;
+    top: 45%;
+    bottom: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+#small_text{
+    font-size: 30px;
+}
+#text_main{
+    font-size: 40px;
+}
+.btn-inscription{
+    margin-top: 30px;
+    text-transform: uppercase;
+    color: white;
+    border: 1px solid white;
+    display: inline-block;
+    padding: 18px 50px;
+    border-radius: 1px;
+    transition: all 0.1s ease-in 0s;
+}
+.btn-inscription a{
+        color: white;
+        text-decoration: none;
+        background-color: transparent;
+}
+.btn-inscription:hover {
+    color: white;
+    border: #dd7272 2px solid;
+    border-radius: 1px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.btn-inscription:active{
+    border: 2px red solid;
+    border-radius: 1px;
+    color: red;
+}
+.chevron{
+    font-size: 50px;
+    color:white;
+}
+.chevron:hover{
+    font-size: 60px;
+    color: #dd7272;
+}
+h3,h2{
+    text-align: center;
+    margin-top: 20px;
+    color: #dd7272;
+}
+.divider{
+    width: 100px;
+    height: 2px;
+    background: #dd7272;
+    margin: 0 auto;
+}
+h4{
+    color: #dd7272;
+    text-decoration: underline;
+}
+@media screen and (max-width: 768px)
+{
+#small_text, #text_main{font-weight: lighter;font-size: 35px;}
+.btn-inscription{padding: 5px 15px; border:#dd7272 2px solid; margin-top: 5px;}
+.chevron{display: none;}
+.ord {order:1;}
+.professionel{
+    margin-top: 35px;
+}
+}
+#join{
+    background-color: #dd7272;
+}
+#join h3{
+    margin-top: 20px;
+}
+#join h5{
+    color: #eee; 
+    text-decoration: underline;
+}
+#join .divider{
+    background:  white;
+}
+.btn-join{
+    background-color: white;
+    color: #dd7272;
+    border: 1px solid rgb(175, 175, 175);
+    display: inline-block;
+}
+.btn-join:hover{
+    text-decoration: underline;
+    color: #dd7272;
+    font-weight: bold;
+    
+}
+#divider-none{
+    width: 250px;
+    height: 2px;
+    background: rgb(170, 161, 161);
+    margin: 0 auto;
+}
+@media screen and (min-width: 800px){
+.br{
+    border-right: 2px solid white;
+}
+#join #divider-none{
+    display: none;
+}
+}
+.mw{
+    display: inline-block;
+}
+.reserve{
+    color: #dd7272;
+    text-decoration: none;
+    font-size: larger;
+}
+.reserve:hover{
+    color: #dd7272;
+}
+.btn_cat{
+    color: white;
+    background-color: #dd7272 ;
+}
+.btn_cat:hover{
+    text-decoration: underline;
+    color: white;
+}
+.dropdown-item{
+    color: #dd7272;
+}
+.dropdown-item:hover{
+    color: white;
+    text-decoration: underline;
+    background-color: #dd7272;
+}
+.btn_hov{
+    color: white;
+    background-color: #dd7272da;
+}
+.btn_hov:hover{
+    color: white;
+    background-color: #dd7272;
+    text-decoration: underline;
+}
+.btn_hov:active{
+    color: #dd7272;
+    background-color: white;
+    border: 2px solid #dd7272;
+    text-decoration: underline;
+}
+.insc{
+    color: #dd7272;
+}
+.insc:hover{
+    color: #dd7272;
+    /* text-decoration: underline; */
+}
+.suite{
+    font-style: italic;
+    color: #dd7272;
+}
+.suite:hover{
+    text-decoration: underline;
+    color: #dd7272;
+}
+.list-group-item.active{
+    background-color: #dd7272;
+    border: #575454 solid 1px;
+}
+.btn_del{
+    color: red;
+    text-decoration: underline;
+}
+.btn_del:hover{
+    text-decoration: underline;
+    color: red;
+    font-weight: bold;
+}
+.bg{
+    background-color: #dd7272;
+    border: #a3a1a1 3px solid;
+    border-radius: 5px;
+    text-decoration: underline;
+    color: white;
+    font-weight: 600;
+}
+.bg-title{
+    background-color: #dd7272;
+    padding: 50px;
+    text-decoration: underline;
+    color: white;
+}
+.btn_form{
+    border: 2px solid white;
+    border-radius: 3px;
+    color: white;
+}
+.btn_form:hover{
+    color: white;
+    text-decoration: underline;
+    font-weight: 500;
+}
+.btn_form:active{
+    background-color: white;
+    text-decoration: underline;
+    color:rgb(221, 114, 114);
+    font-weight: 500;
+}
+.marge-form{
+    margin-top: 51px;
+}
+label{
+    text-decoration: underline;
+}
+.prix{
+    font-size: large;
+}
+img.card-img-top{
+    max-height: 260px;
+}
+

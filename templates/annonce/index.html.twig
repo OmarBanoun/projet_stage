@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces{% endblock %}
+
+{% block body %}
+<div class="container-fluid bg-title marge-form">
+    <h2 class="text-center text-white">Annonces</h2>
+</div>
+<div class="container">
+    <div class="dropdown mt-4">
+        <button class="btn btn_cat dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            catégorie
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{{ path('annonce_coiffure') }}">Coiffure</a>
+            <a class="dropdown-item" href="{{ path('annonce_traiteur') }}">Traîteur</a>
+            <a class="dropdown-item" href="{{ path('annonce_salle') }}">Salle des fêtes</a>
+        </div>
+    </div>
+    {% for annonce in annonces %}
+    <div class="row my-5">
+        <div class="col-12 col-lg-7">
+            <h4><span style="color: black;">{{ annonce.title }}</span></h4>
+            <p class="font-italic">Publié le {{ annonce.createdAt|date("d/m/y") }}</p>
+            <div>{{ annonce.description|u.truncate(110)|raw }} ... <a
+                    href="{{ path('annonce-detail', {'slug': annonce.id}) }}" class="suite">voir la suite</a></div>
+        </div>
+        <div class="ml-auto col-12 col-lg-4">
+            <img class="img-fluid" src="{{ asset('upload/annonce/' ~ annonce.image) }}" alt="">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

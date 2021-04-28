@@ -1,0 +1,154 @@
+easy_admin:
+  site_name: "Événementiel"
+  formats:
+    date: d/m/Y
+  design:
+    brand_color: "#643C84"
+    form_theme:
+      - "@EasyAdmin/form/bootstrap_4.html.twig"
+      - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
+    menu:
+      - label: Home elements
+        icon: home
+        children:
+          - { entity: Main, icon: picture-o }
+          - { entity: About, icon: align-left }
+          - { entity: Home, icon: align-left }
+      - label: Annonce elements
+        icon: picture-o
+        children:
+          - { entity: CategoryAnnonce, icon: bookmark}
+          - { entity: Annonce, icon: align-center }
+      - label: Les abonements
+        icon: wallet
+        entity: Subscription
+      - label: Les utilisateurs
+        icon: user
+        entity: User
+  entities:
+    Main:
+      class: App\Entity\PsMain
+      list:
+        fields:
+          - { property: active }
+          - { property: small_title }
+          - { property: title }
+          - {
+              property: image,
+              type: image,
+              base_path: "%app.path.upload_home%",
+            }
+      form:
+        fields:
+          - { type: group, label: "Settings", icon: cog }
+          - { property: active }
+          - { type: group, label: "Contents", icon: pencil }
+          - { property: small_title }
+          - { property: title, type: "fos_ckeditor" }
+          - { property: imageFile, type: vich_image }
+    About:
+      class: App\Entity\PsAbout
+      list:
+        fields:
+          - { property: text }
+      form:
+        fields:
+          - { type: group, label: "Contents", icon: pencil }
+          - { property: text, type: "fos_ckeditor" }
+    Home:
+      class: App\Entity\PsHome
+      list:
+        fields:
+          - { property: active }
+          - {
+              property: image,
+              type: image,
+              base_path: "%app.path.upload_home%",
+            }
+          - { property: title }
+          - { property: text }
+          - { property: localisation }
+      form:
+        fields:
+          - { type: group, label: "Settings", icon: cog }
+          - { property: active }
+          - { property: localisation }
+          - { type: group, label: "Contents", icon: pencil }
+          - { property: title }
+          - { property: text, type: "fos_ckeditor" }
+          - { property: imageFile, type: vich_image }
+    Subscription:
+      class: App\Entity\PsSubscription
+      list:
+        fields:
+          - { property: name }
+          - { property: description }
+          - { property: prix }
+          - {
+              property: image,
+              type: image,
+              base_path: "%app.path.upload_subscription%",
+            }
+      form:
+        fields:
+          - { type: group, label: "Contents", icon: pencil }
+          - { property: name }
+          - { property: description, type: "fos_ckeditor" }
+          - { property: prix, type: money, type_options: { currency: 'EUR' } }
+          - { property: imageFile, type: vich_image }
+    User:
+      class: App\Entity\PsUser
+      list:
+        fields:
+          - { property: role }
+          - { property: name }
+          - { property: firstname }
+          - { property: login }
+          - { property: password}
+          - { property: number }
+          - { property: number_complement }
+          - { property: street }
+          - { property: city }
+          - { property: country }
+          - { property: postal_code }
+          
+      form:
+        fields:
+          - { type: group, label: "Contents", icon: pencil }
+          - { property: role, label: Rôles, type: choice, type_options: { expanded: true, multiple: true, choices: { Utilisateur: ROLE_USER, Administrateur: ROLE_ADMIN, Professionel: ROLE_PRO } } }
+          - { property: name }
+          - { property: firstname }
+          - { property: login }
+          - { property: password, type: 'password'}
+          - { property: number }
+          - { property: number_complement, type: 'number'}
+          - { property: street }
+          - { property: city }
+          - { property: country }
+          - { property: postal_code, type: 'number'}
+    Annonce:
+      class: App\Entity\Annonce
+      list:
+        fields:
+          - { property: category }
+          - { property: title }
+          - { property: description }
+          - { property: image,
+              type: image,
+              base_path: "%app.path.upload_annonce%",
+            }
+      form:
+        fields:
+          - { property: category }
+          - { type: group, label: "Contents", icon: pencil }
+          - { property: title }
+          - { property: description, type: "fos_ckeditor" }
+          - { property: imageFile, type: vich_image }
+    CategoryAnnonce:
+      class: App\Entity\CategoryAnnonce
+      list:
+        fields:
+          - { property: name }
+      form:
+        fields:
+          - { property: name }

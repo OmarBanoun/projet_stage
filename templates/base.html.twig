@@ -1,19 +1,124 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+    and uncomment the following Encore helpers to start using Symfony UX #}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    {% block stylesheets %}
+    {#{{ encore_entry_link_tags('app') }}#}
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-nav">
+            <a class="navbar-brand" href="{{ path('index') }}">LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('index') }}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('subscription') }}">Abonnements</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Annonces
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ path('annonce_coiffure') }}">Coiffure</a>
+                            <a class="dropdown-item" href="{{ path('annonce_traiteur') }}">Traîteur</a>
+                            <a class="dropdown-item" href="{{ path('annonce_salle') }}">Salle des fêtes</a>
+                            <a class="dropdown-item" href="{{ path('annonce') }}">Toutes les annonces</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown pl-4">
+                        {% if app.user.firstname is defined and app.user.firstname is not null %}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Bienvenue, {{ app.user.firstname }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ path('profil') }}">Profil</a>
+                            <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+                        </div>
+                        {% else %}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ path('inscription')}}">S'inscrire</a>
+                            <a class="dropdown-item" href="{{ path('app_login')}}">Se connecter</a>
+                        </div>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% block body %}{% endblock %}
+    <footer class="container-fluid bg-dark text-light py-2">
+        <div class="container mt-5">
+            <div class="row">
+                <ul class="list-unstyled col-lg-4 text-center">
+                    <li>
+                        <a href="{{ path('index') }}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('inscription')}}">S'inscrire</a>
+                    </li>
+                </ul>
+                <ul class="row list-unstyled col-lg-4 align-self-center reseau justify-content-center">
+                    <li class="mr-4">
+                        <a href="https://www.instagram.com" target="_blank"><i class="fa fa-instagram"></i> </a>
+                    </li>
+
+                    <li class="mr-4">
+                        <a href="https://www.facebook.com"><i class="fa fa-facebook"></i> </a>
+                    </li>
+
+                    <li class="mr-4">
+                        <a href="https://www.twitter.com"><i class="fa fa-twitter"></i> </a>
+                    </li>
+
+                    <li class="mr-4">
+                        <a href="https://www.youtube.com"><i class="fa fa-youtube"></i> </a>
+                    </li>
+                </ul>
+                <ul class="list-unstyled col-lg-4 text-center">
+                    <li>
+                        <a href="">Nous contacter</a>
+                    </li>
+                    <li>
+                        <a href="">Mentions Légales</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/4d52a34aef.js"></script>
+    {% block javascripts %}
+    {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</body>
+
 </html>
