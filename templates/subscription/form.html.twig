@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}form{% endblock %}
+
+{% block body %}
+<div class="container-fluid cover titre-deal">
+    <div class="container py-5">
+        <h1 class="text-center text-danger">P&P</h1>
+        <p class="text-center">Rejoignez-nous si vous êtes un particulier pour organiser vos évènments où si vous êtes un professionel de l'évènementiel !</p>
+    </div>
+</div>
+<div class="container bg-white shadow py-2 my-4">
+    <h3 class="mt-3 text-center">Inscrivez-vous :</h3>
+    <div class="divider mb-4"></div>
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.subscription, 'sub') }}
+        {{ form_widget(form.subscription, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="text-right">
+        <button type="submit" class="btn btn_hov mt-3">Souscrire</button>
+    </div>
+    {{ form_row(form._token) }}
+    {{ form_end(form, { render_rest: false }) }}
+</div>
+{% endblock %}

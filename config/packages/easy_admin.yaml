@@ -84,6 +84,7 @@ easy_admin:
           - { property: name }
           - { property: description }
           - { property: prix }
+          - { property: duration }
           - {
               property: image,
               type: image,
@@ -95,6 +96,7 @@ easy_admin:
           - { property: name }
           - { property: description, type: "fos_ckeditor" }
           - { property: prix, type: money, type_options: { currency: 'EUR' } }
+          - { property: duration }
           - { property: imageFile, type: vich_image }
     User:
       class: App\Entity\PsUser
@@ -124,7 +126,7 @@ easy_admin:
           - { property: number_complement, type: 'number'}
           - { property: street }
           - { property: city }
-          - { property: country }
+          - { property: country, type: 'country' }
           - { property: postal_code, type: 'number'}
     Annonce:
       class: App\Entity\Annonce

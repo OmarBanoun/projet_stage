@@ -69,25 +69,25 @@ class PsSubscription implements Serializable
      * @ORM\OneToMany(targetEntity=PsUser::class, mappedBy="subscription")
      */
     private $Users;
+
     /**
-    * @return string
-    */
-    public function __toString()
-    { 
-        return (string) $this->getId();
+     * @ORM\Column(type="dateinterval")
+     */
+    private $duration;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PsSubscriptionDetail::class, mappedBy="subscription")
+     */
+    private $PsSubscriptionDetail;
+
+    public function __toString() {
+        return $this->name;
     }
-
-    // public function __toString()
-    // {
-    //     return $this->description;
-    //     return $this->name;
-    //     return $this->id;
-
-    // }
 
     public function __construct()
     {
         $this->Users = new ArrayCollection();
+        $this->PsSubscriptionDetail = new ArrayCollection();
     }
 
 
@@ -186,6 +186,48 @@ public function removeUser(PsUser $user): self
         // set the owning side to null (unless already changed)
         if ($user->getSubscription() === $this) {
             $user->setSubscription(null);
+        }
+    }
+
+    return $this;
+}
+
+public function getDuration(): ?\DateInterval
+{
+    return $this->duration;
+}
+
+public function setDuration(\DateInterval $duration): self
+{
+    $this->duration = $duration;
+
+    return $this;
+}
+
+/**
+ * @return Collection|PsSubscriptionDetail[]
+ */
+public function getPsSubscriptionDetail(): Collection
+{
+    return $this->PsSubscriptionDetail;
+}
+
+public function addPsSubscriptionDetail(PsSubscriptionDetail $psSubscriptionDetail): self
+{
+    if (!$this->PsSubscriptionDetail->contains($psSubscriptionDetail)) {
+        $this->PsSubscriptionDetail[] = $psSubscriptionDetail;
+        $psSubscriptionDetail->setSubscription($this);
+    }
+
+    return $this;
+}
+
+public function removePsSubscriptionDetail(PsSubscriptionDetail $psSubscriptionDetail): self
+{
+    if ($this->PsSubscriptionDetail->removeElement($psSubscriptionDetail)) {
+        // set the owning side to null (unless already changed)
+        if ($psSubscriptionDetail->getSubscription() === $this) {
+            $psSubscriptionDetail->setSubscription(null);
         }
     }
 

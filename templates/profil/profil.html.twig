@@ -10,9 +10,9 @@
 <div class="row mt-5">
     <div class="col-3 ml-4">
         <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+            <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list"
             href="#list-profile" role="tab" aria-controls="profile">Mes Annonces</a>
-            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
+            <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list"
                 href="#list-home" role="tab" aria-controls="home">Mon Profil</a>
             <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
                 href="#list-settings" role="tab" aria-controls="settings">Mon Abonnement</a>
@@ -22,9 +22,9 @@
     </div>
     <div class="col-8">
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                 <div class="col-12 bg-title mb-5">
-                    <h4 class="text-center text-white">Modifier mon profil :</h4>
+                    <h4 class="text-center">Modifier mon profil :</h4>
                 </div>
                 <!-- {% if is_granted('ROLE_ADMIN') %} -->
                 <div class="container bg shadow py-2 mb-5">
@@ -92,7 +92,7 @@
                 </div>
                 <!-- {% endif %} -->
             </div>
-            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+            <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                 <div class="row ml-1">
                     <div class="col-8 bg">
                         <h5 class="text-white text-center">Mes annonces :</h5>
@@ -124,7 +124,9 @@
                 toto-message
             </div>
             <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
-                {{dump(abonnement.name)}}
+                {{ abonnement.name }} 
+                <br>
+                {{ abonnement.description|raw }}
             </div>
         </div>
     </div>

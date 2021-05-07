@@ -38,9 +38,17 @@ class PsCategory
     private $parentid;
 
     /**
-     * @ORM\OneToMany(targetEntity=PsAnnonce::class, mappedBy="categorie", orphanRemoval=true)
+     * @var string
+     *
+     * @ORM\Column(name="toto", type="string", length=50, nullable=false)
      */
-    private $annonces;
+    private $toto;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $totoBis;
+
 
     public function __construct()
     {
@@ -107,6 +115,18 @@ class PsCategory
                 $annonce->setCategorie(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTotoBis(): ?string
+    {
+        return $this->totoBis;
+    }
+
+    public function setTotoBis(string $totoBis): self
+    {
+        $this->totoBis = $totoBis;
 
         return $this;
     }

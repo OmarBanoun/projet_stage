@@ -3,6 +3,8 @@ body, html {
     display:flex;
     flex-flow:column;
     scroll-behavior: smooth;
+    /* font-family: 'Orelega One', sans-serif; */
+    font-family: 'Merriweather', serif;
 }
 header {
     position: fixed;
@@ -244,10 +246,12 @@ h4{
     font-weight: 600;
 }
 .bg-title{
-    background-color: #dd7272;
+    background-color: #c5bfbf;
     padding: 50px;
     text-decoration: underline;
-    color: white;
+    color: #dd7272;
+    border: #dd7272 2px solid;
+    border-radius: 5px;
 }
 .btn_form{
     border: 2px solid white;

@@ -102,7 +102,7 @@ class PsUser implements UserInterface
     private $postalCode;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="ps_user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user", orphanRemoval=true)
      */
     private $annonces;
 

@@ -8,6 +8,7 @@ use App\Entity\Annonce;
 use App\Form\ProfilType;
 use App\Form\AnnonceType;
 use App\Entity\PsSubscription;
+use App\Entity\PsSubscriptionDetail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,8 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Controller\UserValueResolver;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ProfilController extends AbstractController
 {
@@ -90,8 +91,6 @@ class ProfilController extends AbstractController
     $repository = $this->getDoctrine()->getRepository(Annonce::class);
     $annonces = $repository->findBy(array('user'=>$user));
     $abonnement = $user->getSubscription();
-    // $userAbo = $repository->findBy(array('subscription'=>$subscription));
-
     
     // dump($userAbo);
     // dump('toto');

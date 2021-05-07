@@ -53,13 +53,13 @@ class Annonce
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=PsUser::class, inversedBy="Annonces")
+     * @ORM\ManyToOne(targetEntity=PsUser::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategoryAnnonce::class, inversedBy="Annonces")
+     * @ORM\ManyToOne(targetEntity=CategoryAnnonce::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
